@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GamerZone IL – פורטל הגיימינג הישראלי</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon: #00f5a0;
+    --neon2: #00d9f5;
+    --accent: #ff3c6e;
+    --dark: #0a0c10;
+    --card: #12151c;
+    --card2: #1a1e28;
+    --text: #e8eaf0;
+    --muted: #7a7f8e;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,12,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--neon);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  .logo span { color: var(--neon2); }
+
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--neon); }
+
+  .nav-cta {
+    background: var(--neon);
+    color: var(--dark) !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 900 !important;
+    font-size: 0.9rem !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; color: var(--dark) !important; }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    padding: 80px 5% 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0,245,160,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 30%, rgba(0,217,245,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,245,160,0.1);
+    border: 1px solid rgba(0,245,160,0.3);
+    color: var(--neon);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 .highlight {
+    color: transparent;
+    background: linear-gradient(90deg, var(--neon), var(--neon2));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+    max-width: 440px;
+  }
+
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--neon);
+    color: var(--dark);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--neon); transform: translateY(-2px); }
+
+  /* Featured game card in hero */
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-card-img {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #1a2a1f 0%, #0d1f2d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--card) 0%, transparent 60%);
+  }
+
+  .hero-card-body { padding: 20px; }
+  .hero-card-tag {
+    background: rgba(255,60,110,0.15);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .hero-card-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+  .hero-card-meta { color: var(--muted); font-size: 0.85rem; }
+
+  /* ========== LIVE SCORES TICKER ========== */
+  .ticker-bar {
+    background: rgba(0,245,160,0.06);
+    border-top: 1px solid rgba(0,245,160,0.15);
+    border-bottom: 1px solid rgba(0,245,160,0.15);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+
+  .ticker-inner {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .ticker-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--neon);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .ticker-score { color: var(--neon); }
+
+  /* ========== SECTION ========== */
+  section { padding: 60px 5%; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 24px;
+    background: var(--neon);
+    border-radius: 2px;
+  }
+  .see-all {
+    color: var(--neon);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(0,245,160,0.3);
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .see-all:hover { background: rgba(0,245,160,0.1); }
+
+  /* ========== NEWS GRID ========== */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .news-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .news-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,245,160,0.3);
+  }
+
+  .news-card-img {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+  }
+
+  .news-card-img.fortnite { background: linear-gradient(135deg, #1a0a3d, #3d0f6b); }
+  .news-card-img.fc25     { background: linear-gradient(135deg, #0a1a2e, #0a3d1a); }
+  .news-card-img.minecraft { background: linear-gradient(135deg, #1a2e0a, #2e1a0a); }
+  .news-card-img.valorant { background: linear-gradient(135deg, #2e0a0a, #1a0a0a); }
+
+  .news-card-body { padding: 16px; }
+  .news-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .tag-news     { background: rgba(0,217,245,0.12); color: var(--neon2); }
+  .tag-tips     { background: rgba(0,245,160,0.12); color: var(--neon); }
+  .tag-esport   { background: rgba(255,60,110,0.12); color: var(--accent); }
+  .tag-review   { background: rgba(255,180,0,0.12); color: #ffb400; }
+
+  .news-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .news-card-meta {
+    color: var(--muted);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .news-card-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* ========== TIPS SECTION ========== */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .tip-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .tip-card:hover { transform: translateY(-3px); border-color: rgba(0,245,160,0.25); }
+
+  .tip-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .tip-game { color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .tip-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+  .tip-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+  /* ========== ESPORT SECTION ========== */
+  .esport-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .match-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .match-card:hover { border-color: rgba(0,245,160,0.3); }
+
+  .match-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .match-league { color: var(--muted); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; }
+  .match-live {
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+  .match-soon {
+    background: rgba(0,245,160,0.12);
+    color: var(--neon);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  .match-teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .team-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: var(--card2);
+    border: 1px solid var(--border);
+  }
+
+  .team-name { font-size: 0.85rem; font-weight: 700; text-align: center; }
+  .team-country { color: var(--muted); font-size: 0.75rem; }
+
+  .score-box {
+    text-align: center;
+    padding: 0 16px;
+  }
+  .score { font-size: 2rem; font-weight: 900; font-family: 'Rajdhani', sans-serif; color: var(--neon); }
+  .score-time { color: var(--muted); font-size: 0.75rem; }
+
+  /* ========== CHALLENGE SECTION ========== */
+  .challenge-banner {
+    background: linear-gradient(135deg, var(--card2) 0%, rgba(0,245,160,0.08) 100%);
+    border: 1px solid rgba(0,245,160,0.2);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .challenge-banner::before {
+    content: '🏆';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10rem;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .challenge-text h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; }
+  .challenge-text h2 span { color: var(--neon); }
+  .challenge-text p { color: var(--muted); max-width: 400px; }
+
+  .challenge-stats {
+    display: flex;
+    gap: 32px;
+    flex-shrink: 0;
+  }
+
+  .challenge-stat { text-align: center; }
+  .challenge-stat .num { font-size: 2rem; font-weight: 900; color: var(--neon); font-family: 'Rajdhani', sans-serif; }
+  .challenge-stat .label { color: var(--muted); font-size: 0.8rem; font-weight: 700; }
+
+  /* ========== AD BANNER ========== */
+  .ad-banner {
+    background: var(--card2);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0 5%;
+  }
+  .ad-banner strong { color: var(--text); font-size: 0.9rem; }
+
+  /* ========== LEADERBOARD ========== */
+  .leaderboard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .lb-header {
+    background: var(--card2);
+    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 40px 1fr 80px 80px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    gap: 12px;
+  }
+
+  .lb-row {
+    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 40px 1fr 80px 80px;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .lb-row:hover { background: rgba(255,255,255,0.02); }
+
+  .lb-rank { font-weight: 900; font-size: 1rem; color: var(--muted); text-align: center; }
+  .lb-rank.gold   { color: #ffd700; }
+  .lb-rank.silver { color: #c0c0c0; }
+  .lb-rank.bronze { color: #cd7f32; }
+
+  .lb-player { display: flex; align-items: center; gap: 10px; }
+  .lb-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--card2);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .lb-name { font-weight: 700; font-size: 0.9rem; }
+  .lb-tag  { color: var(--muted); font-size: 0.75rem; }
+  .lb-score { font-weight: 700; color: var(--neon); font-family: 'Rajdhani', sans-serif; font-size: 1rem; }
+  .lb-wins { font-weight: 700; color: var(--text); font-size: 0.9rem; }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 40px 5% 24px;
+    margin-top: 40px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+
+  .footer-brand .logo { display: block; margin-bottom: 12px; }
+  .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; max-width: 280px; }
+
+  .footer-col h4 { font-weight: 900; font-size: 0.9rem; margin-bottom: 16px; color: var(--text); }
+  .footer-col a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--neon); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .esport-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .challenge-banner { flex-direction: column; text-align: center; }
+    .hero h1 { font-size: 2.2rem; }
+    nav { gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    nav .nav-hide { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <a href="#" class="logo">Gamer<span>Zone</span> IL</a>
+  <nav>
+    <a href="#news" class="nav-hide">חדשות</a>
+    <a href="#tips" class="nav-hide">טיפים</a>
+    <a href="#esport" class="nav-hide">Esport</a>
+    <a href="#leaderboard" class="nav-hide">דירוגים</a>
+    <a href="#" class="nav-cta">הצטרף עכשיו</a>
+  </nav>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">🔥 הפורטל הגיימינג הישראלי מספר 1</div>
+      <h1>שחק. <span class="highlight">תשלוט.</span> תנצח.</h1>
+      <p>הכל על גיימינג בעברית – חדשות, טיפים, עדכוני Esport, ודירוגים ישראליים. מיועד לגיימרים אמיתיים.</p>
+      <div class="hero-btns">
+        <a href="#news" class="btn-primary">קרא חדשות</a>
+        <a href="#leaderboard" class="btn-secondary">👑 דירוגים</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-img">🎮</div>
+      <div class="hero-card-body">
+        <div class="hero-card-tag">🔥 חם עכשיו</div>
+        <div class="hero-card-title">FC 25 – עדכון עונה 3 הגיע!</div>
+        <div class="hero-card-meta">⏱ לפני 2 שעות &nbsp;·&nbsp; 👁 4,231 צפיות</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TICKER ========== -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="ticker">
+    <div class="ticker-item"><span class="ticker-dot"></span> Fortnite – עונה חדשה <span class="ticker-score">LIVE</span></div>
+    <div class="ticker-item">🏆 Esport IL פרו ליג – Natus Vincere vs. Team Vitality <span class="ticker-score">14:7</span></div>
+    <div class="ticker-item">🎮 Minecraft 1.21.2 – עדכון ה-Bundles יוצא מחר</div>
+    <div class="ticker-item">⚽ EA FC 25 – טורניר ה-Weekend League מתחיל בשישי</div>
+    <div class="ticker-item">🔫 Valorant Patch 9.0 – Viper מקבלת buff חדש</div>
+    <div class="ticker-item">📱 Mobile Gaming – PUBG Mobile טורניר ישראלי בפסח</div>
+    <!-- duplicate for infinite loop -->
+    <div class="ticker-item"><span class="ticker-dot"></span> Fortnite – עונה חדשה <span class="ticker-score">LIVE</span></div>
+    <div class="ticker-item">🏆 Esport IL פרו ליג – Natus Vincere vs. Team Vitality <span class="ticker-score">14:7</span></div>
+    <div class="ticker-item">🎮 Minecraft 1.21.2 – עדכון ה-Bundles יוצא מחר</div>
+    <div class="ticker-item">⚽ EA FC 25 – טורניר ה-Weekend League מתחיל בשישי</div>
+    <div class="ticker-item">🔫 Valorant Patch 9.0 – Viper מקבלת buff חדש</div>
+    <div class="ticker-item">📱 Mobile Gaming – PUBG Mobile טורניר ישראלי בפסח</div>
+  </div>
+</div>
+
+<!-- ========== AD ========== -->
+<div class="ad-banner" style="margin-top:32px">
+  <strong>פרסומת</strong>
+  <span>כאן יופיע פרסום Google AdSense שלך</span>
+</div>
+
+<!-- ========== NEWS ========== -->
+<section id="news">
+  <div class="section-header">
+    <div class="section-title">חדשות גיימינג</div>
+    <a href="#" class="see-all">כל החדשות →</a>
+  </div>
+  <div class="news-grid">
+
+    <a href="#" class="news-card">
+      <div class="news-card-img fortnite">🌀</div>
+      <div class="news-card-body">
+        <span class="news-tag tag-news">חדשות</span>
+        <div class="news-card-title">Fortnite עונה 3 – מפת הסייבר-פאנק שוחררה רשמית</div>
+        <div class="news-card-meta">
+          <span>⏱ לפני שעה</span>
+          <span>👁 8,412</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <div class="news-card-img fc25">⚽</div>
+      <div class="news-card-body">
+        <span class="news-tag tag-review">ביקורת</span>
+        <div class="news-card-title">FC 25 Ultimate Team – האם ה-meta השתנה אחרי העדכון?</div>
+        <div class="news-card-meta">
+          <span>⏱ לפני 3 שעות</span>
+          <span>👁 5,890</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <div class="news-card-img minecraft">🌲</div>
+      <div class="news-card-body">
+        <span class="news-tag tag-news">חדשות</span>
+        <div class="news-card-title">Minecraft – גרסת ה-1.22 מגיעה עם Bundles ועוד מגה פיצ'רים</div>
+        <div class="news-card-meta">
+          <span>⏱ לפני 5 שעות</span>
+          <span>👁 3,201</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="news-card">
+      <div class="news-card-img valorant">🎯</div>
+      <div class="news-card-body">
+        <span class="news-tag tag-esport">Esport</span>
+        <div class="news-card-title">Valorant – קבוצת Israel Force מגיעה לפינאל האירופי!</div>
+        <div class="news-card-meta">
+          <span>⏱ אתמול</span>
+          <span>👁 12,055</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ========== TIPS ========== -->
+<section id="tips" style="background:rgba(255,255,255,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-header">
+    <div class="section-title">טיפים וטריקים</div>
+    <a href="#" class="see-all">כל הטיפים →</a>
+  </div>
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <span class="tip-icon">🌀</span>
+      <div class="tip-game">Fortnite</div>
+      <div class="tip-title">5 מקומות ה-drop הטובים ביותר לסולו</div>
+      <div class="tip-desc">איפה כדאי לנחות כדי לאסוף לות' מהיר ולשרוד את הריינג'ר הראשון...</div>
+    </div>
+
+    <div class="tip-card">
+      <span class="tip-icon">⚽</span>
+      <div class="tip-game">EA FC 25</div>
+      <div class="tip-title">איך לבנות ה-FUT squad הכי חזק ב-100K מטבעות</div>
+      <div class="tip-desc">מדריך מלא לבניית קבוצה תחרותית עם בנג'ט נמוך בעידן ה-meta החדש...</div>
+    </div>
+
+    <div class="tip-card">
+      <span class="tip-icon">🎯</span>
+      <div class="tip-game">Valorant</div>
+      <div class="tip-title">שיפור ה-aim ב-30 יום – תוכנית אימונים יומית</div>
+      <div class="tip-desc">תרגולי Aim Lab ו-Deathmatch שיעזרו לך לעלות מ-Gold ל-Platinum תוך חודש...</div>
+    </div>
+
+    <div class="tip-card">
+      <span class="tip-icon">🌲</span>
+      <div class="tip-game">Minecraft</div>
+      <div class="tip-title">בניית בסיס מאובטח בתוך שעה – מדריך מהיר</div>
+      <div class="tip-desc">גישה שלב-אחר-שלב לבניית מחסה עם תאורה, storage ומשק חקלאי ראשוני...</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== ESPORT ========== -->
+<section id="esport">
+  <div class="section-header">
+    <div class="section-title">Esport – משחקים חיים</div>
+    <a href="#" class="see-all">לוח משחקים מלא →</a>
+  </div>
+  <div class="esport-grid">
+
+    <div class="match-card">
+      <div class="match-header">
+        <div class="match-league">🌍 Valorant Champions Tour – EMEA</div>
+        <div class="match-live">● LIVE</div>
+      </div>
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-logo">🐻</div>
+          <div class="team-name">Natus Vincere</div>
+          <div class="team-country">🇺🇦 אוקראינה</div>
+        </div>
+        <div class="score-box">
+          <div class="score">14 : 7</div>
+          <div class="score-time">מפה 2 – רביעים</div>
+        </div>
+        <div class="team">
+          <div class="team-logo">🐺</div>
+          <div class="team-name">Team Vitality</div>
+          <div class="team-country">🇫🇷 צרפת</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-card">
+      <div class="match-header">
+        <div class="match-league">🇮🇱 Israel Esport Pro League – FC 25</div>
+        <div class="match-soon">היום 20:00</div>
+      </div>
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-logo">🦅</div>
+          <div class="team-name">Maccabi Gaming</div>
+          <div class="team-country">🇮🇱 ישראל</div>
+        </div>
+        <div class="score-box">
+          <div class="score" style="color:var(--muted);font-size:1.4rem">VS</div>
+          <div class="score-time">עוד 4 שעות</div>
+        </div>
+        <div class="team">
+          <div class="team-logo">⚡</div>
+          <div class="team-name">Hapoel Esport</div>
+          <div class="team-country">🇮🇱 ישראל</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-card">
+      <div class="match-header">
+        <div class="match-league">🌍 Fortnite FNCS – Global Finals</div>
+        <div class="match-soon">מחר 16:00</div>
+      </div>
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-logo">🌪</div>
+          <div class="team-name">Clix & Mero</div>
+          <div class="team-country">🇺🇸 ארצות הברית</div>
+        </div>
+        <div class="score-box">
+          <div class="score" style="color:var(--muted);font-size:1.4rem">VS</div>
+          <div class="score-time">פינאל</div>
+        </div>
+        <div class="team">
+          <div class="team-logo">🎯</div>
+          <div class="team-name">Bugha & Stretch</div>
+          <div class="team-country">🇺🇸 ארצות הברית</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-card">
+      <div class="match-header">
+        <div class="match-league">🌍 Minecraft Championship – MCC</div>
+        <div class="match-soon">שישי 21:00</div>
+      </div>
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-logo">🟩</div>
+          <div class="team-name">Emerald Endermen</div>
+          <div class="team-country">🌍 אנגליה</div>
+        </div>
+        <div class="score-box">
+          <div class="score" style="color:var(--muted);font-size:1.4rem">VS</div>
+          <div class="score-time">גמר</div>
+        </div>
+        <div class="team">
+          <div class="team-logo">🔵</div>
+          <div class="team-name">Blue Blazes</div>
+          <div class="team-country">🌍 אמריקה</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== CHALLENGE ========== -->
+<section>
+  <div class="challenge-banner">
+    <div class="challenge-text">
+      <h2>🏆 אתגר השבוע – <span>Fortnite Solo</span></h2>
+      <p>השג 3 Victory Royale בתוך 48 שעות ותכנס לדירוג הלאומי! הגיימרים הטובים ביותר יקבלו פרסים ותעודות.</p>
+      <br>
+      <a href="#" class="btn-primary" style="display:inline-block">✅ הירשם לאתגר</a>
+    </div>
+    <div class="challenge-stats">
+      <div class="challenge-stat">
+        <div class="num">1,842</div>
+        <div class="label">משתתפים</div>
+      </div>
+      <div class="challenge-stat">
+        <div class="num">47</div>
+        <div class="label">שעות נותרו</div>
+      </div>
+      <div class="challenge-stat">
+        <div class="num">3</div>
+        <div class="label">פרסים</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LEADERBOARD ========== -->
+<section id="leaderboard" style="background:rgba(255,255,255,0.015); border-top:1px solid var(--border);">
+  <div class="section-header">
+    <div class="section-title">👑 לוח הדירוג הישראלי</div>
+    <a href="#" class="see-all">דירוג מלא →</a>
+  </div>
+  <div class="leaderboard">
+    <div class="lb-header">
+      <div style="text-align:center">#</div>
+      <div>שחקן</div>
+      <div style="text-align:center">ניצחונות</div>
+      <div style="text-align:center">ניקוד</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank gold">🥇</div>
+      <div class="lb-player">
+        <div class="lb-avatar">👾</div>
+        <div><div class="lb-name">ShadowStrike_IL</div><div class="lb-tag">Fortnite</div></div>
+      </div>
+      <div class="lb-wins" style="text-align:center">324</div>
+      <div class="lb-score" style="text-align:center">98,412</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank silver">🥈</div>
+      <div class="lb-player">
+        <div class="lb-avatar">🔥</div>
+        <div><div class="lb-name">NightWolf_TLV</div><div class="lb-tag">Valorant</div></div>
+      </div>
+      <div class="lb-wins" style="text-align:center">298</div>
+      <div class="lb-score" style="text-align:center">91,750</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank bronze">🥉</div>
+      <div class="lb-player">
+        <div class="lb-avatar">⚡</div>
+        <div><div class="lb-name">PixelKing_HFA</div><div class="lb-tag">FC 25</div></div>
+      </div>
+      <div class="lb-wins" style="text-align:center">271</div>
+      <div class="lb-score" style="text-align:center">87,300</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank">4</div>
+      <div class="lb-player">
+        <div class="lb-avatar">🌀</div>
+        <div><div class="lb-name">CreeperHunter</div><div class="lb-tag">Minecraft</div></div>
+      </div>
+      <div class="lb-wins" style="text-align:center">240</div>
+      <div class="lb-score" style="text-align:center">82,100</div>
+    </div>
+
+    <div class="lb-row">
+      <div class="lb-rank">5</div>
+      <div class="lb-player">
+        <div class="lb-avatar">🎮</div>
+        <div><div class="lb-name">AceGamer_Beer7</div><div class="lb-tag">Fortnite</div></div>
+      </div>
+      <div class="lb-wins" style="text-align:center">219</div>
+      <div class="lb-score" style="text-align:center">79,550</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AD BOTTOM ========== -->
+<div class="ad-banner" style="margin-top:0">
+  <strong>פרסומת</strong>
+  <span>כאן יופיע פרסום Google AdSense שלך – לפטו 728x90</span>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">Gamer<span>Zone</span> IL</a>
+      <p>הפורטל הגיימינג הישראלי הגדול ביותר. חדשות, טיפים, Esport ודירוגים – הכל בעברית.</p>
+    </div>
+    <div class="footer-col">
+      <h4>תוכן</h4>
+      <a href="#">חדשות</a>
+      <a href="#">טיפים</a>
+      <a href="#">ביקורות</a>
+      <a href="#">סרטונים</a>
+    </div>
+    <div class="footer-col">
+      <h4>Esport</h4>
+      <a href="#">לוח משחקים</a>
+      <a href="#">דירוגים</a>
+      <a href="#">אתגרים</a>
+      <a href="#">קבוצות ישראליות</a>
+    </div>
+    <div class="footer-col">
+      <h4>אחר</h4>
+      <a href="#">צור קשר</a>
+      <a href="#">פרסם אצלנו</a>
+      <a href="#">מדיניות פרטיות</a>
+      <a href="#">תנאי שימוש</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 GamerZone IL – כל הזכויות שמורות</span>
+    <span>🇮🇱 מפותח בישראל</span>
+  </div>
+</footer>
+
+</body>
+</html>
